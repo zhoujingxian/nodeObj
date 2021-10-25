@@ -1,32 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const ejs = require("ejs");
-const {
-    findDetail
-} = require("../../ults/mgdb");
+const axios = require("axios")
 
 router.get("/", (req, res, next) => {
-    findDetail({
-        collectionName: "home",
-        _id: req.paramsList._id,
-    }).then(({
-        data
-    }) => {
+    axios.get(`http://localhost:3000/api/news/home/${req.paramsList._id}`).then(result => {
         const ejsData = {
-            data: data[0]
+            data: result.data.data[0]
         }
-        console.log(1)
         ejs.renderFile("./views/article.ejs", ejsData, (err, data) => {
             res.send(data)
         })
-    }).catch(
-        err => {
-            res.send({
-                err: 1,
-                title: "兜库失败"
-            })
-        }
-    )
+    }).catch(err => console.log(err))
 })
 
 module.exports = router;

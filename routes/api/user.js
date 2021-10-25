@@ -3,7 +3,6 @@ const router = express.Router();
 const open = require("../../ults/mgdb").open
 
 router.get("/", (req, res, next) => {
-    console.log(123)
     open({
         collectionName: "user"
     }).then(({

@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
     }
     console.log(req.url)
 
-    if (/login|reg|logout|index|follow|column|article|mydoc/.test(req.url)) {
+    if (/login|reg|logout|index|follow|column|article|mydoc|banner|home/.test(req.url)) {
         next()
     } else {
         const token = req.query.token || req.body.token || req.headers.token
