@@ -44,7 +44,7 @@ let findList = ({
                 [_sort]: 1
             },
             skip: _page * _limit,
-            limit: _limit
+            limit: _limit - 0
         }).toArray((err, result) => {
             if (!err && result.length > 0) {
                 resolve({

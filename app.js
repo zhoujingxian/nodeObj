@@ -29,10 +29,9 @@ app.use(cookieParser({
 }));
 
 app.use("/adm", express.static(path.join(__dirname, 'public/admin')));
-// app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'newApp')));
+// app.use(express.static(path.join(__dirname, 'newApp')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public/template')));
-
 
 
 app.use("/", require("./ults/params"))
@@ -40,6 +39,8 @@ app.use("/api/reg", require("./routes/api/reg"));
 app.use("/api/login", require("./routes/api/login"));
 app.use("/api/news", require("./routes/api/news"))
 app.use("/api/user", require("./routes/api/user"))
+app.use("/api/is-token", require("./routes/api/is-token"))
+
 // app.use("/api/home", require("./routes/api/home"))
 // app.use("/api/follow", require("./routes/api/follow")) 
 // app.use("/api/column", require("./routes/api/column"))

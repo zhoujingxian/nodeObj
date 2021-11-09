@@ -10,16 +10,13 @@ module.exports = (req, res, next) => {
         q: req.query.q || req.body.q || req.headers.q || global.q,
         _id: req.query._id || req.body._id || req.headers._id || null
     }
-    console.log(req.url)
 
     if (/login|reg|logout|index|follow|column|article|mydoc|banner|home/.test(req.url)) {
         next()
     } else {
         const token = req.query.token || req.body.token || req.headers.token
-        console.log(token)
         verify(token).then(decode => {
             req.decode = decode;
-            console.log(123123123)
             next();
         }).catch(err => {
             res.send({

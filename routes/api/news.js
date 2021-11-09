@@ -15,7 +15,6 @@ router.get("/:newsname", (req, res, next) => {
     }).then(result => {
         res.send(result)
     }).catch(err => {
-        console.log(34563456)
         res.send(err)
     })
 

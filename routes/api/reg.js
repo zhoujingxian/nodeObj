@@ -16,11 +16,13 @@ router.post("/", (req, res, next) => {
     let {
         username,
         password,
-        nikename = randomName.place(),
+        nikename,
         age = null,
         title = null,
 
     } = req.body;
+
+    nikename = nikename ? nikename : randomName.place()
 
     if (!username || !password) {
         res.send({
@@ -30,11 +32,12 @@ router.post("/", (req, res, next) => {
         return;
     }
     const time = Date.now();
-    let icon = "/upload/icon.png"
+    let icon = "/upload/icon.jpg"
+    console.log(req.files)
     if (req.files && req.files.length > 0) {
         fs.renameSync(req.files[0].path, req.files[0].path + path.parse(req.files[0].originalname).ext);
-        icon = req.files[0].path + path.parse(req.files[0].originalname).ext
-        // icon = "/upload/user/" + req.files[0].filename + path.parse(req.files[0].originalname).ext;
+        // icon = req.files[0].path + path.parse(req.files[0].originalname).ext
+        icon = "/upload/user/" + req.files[0].filename + path.parse(req.files[0].originalname).ext;
     }
     open({
         collectionName: "user"
